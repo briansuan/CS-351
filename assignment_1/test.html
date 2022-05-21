@@ -1,0 +1,27 @@
+<html>
+<body>
+<button style='width: 300px; height: 300px;'onclick=play();>PLAY</button>
+<script>
+function play() {
+
+setTimeout(function() {
+var audio = new Audio('Strings/string_2.wav');
+audio.play();
+setTimeout(function() { audio.pause(); }, 3915.96, audio);
+}, 0);
+
+setTimeout(function() {
+var audio = new Audio('Strings/string_3.wav');
+audio.play();
+setTimeout(function() { audio.pause(); }, 3348.3, audio);
+}, 1000);
+
+setTimeout(function() {
+var audio = new Audio('Drums/Melodic/melodic_3.wav');
+audio.play();
+setTimeout(function() { audio.pause(); }, 3948.88, audio);
+}, 2000);
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,54 @@
+<html>
+    <head>
+        <script src="main.js"></script>
+        <link rel="stylesheet" type="text/css" href="style.css">
+    </head>
+    <body>
+        <div id="wrapper">
+            <div id="notes_entry">
+                <h3 class="header" style="font-family: sans-serif;">ENTER YOUR NOTES</h3>
+                <hr>
+                <textarea class="textarea" id="textBox" cols="40" rows="20">
+A
+ B
+  C
+   D
+                </textarea>
+                <br>
+                <br>
+                <button class="btn" onclick="play_music();">PLAY</button>
+                <br>
+                <br>
+                <h3 class="header" style="font-family: sans-serif;">HOLD DOWN / RELEASE A KEY (A - H)</h3>
+                <hr>
+                <input id="input" size="60" maxlength="50" onkeydown="soundOn();" onkeyup="soundOff();">
+                <br>
+                <br>
+                <h3 class="header" style="font-family: sans-serif;">BEAT PAD</h3>
+                <hr>
+                <span>
+                    <button class="btn" id="btnA" onclick="beat_pad();">A</button>
+                    <button class="btn" id="btnB" onclick="beat_pad();">B</button>
+                    <button class="btn" id="btnC" onclick="beat_pad();">C</button>
+                    <button class="btn" id="btnD" onclick="beat_pad();">D</button>                       
+                </span>
+                <br>
+                <span>
+                    <button class="btn" id="btnE" onclick="beat_pad();">E</button>
+                    <button class="btn" id="btnF" onclick="beat_pad();">F</button>
+                    <button class="btn" id="btnG" onclick="beat_pad();">G</button>
+                    <button class="btn" id="btnH" onclick="beat_pad();">H</button>
+                </span> 
+                <br>
+                <br>
+                <br>
+                <br>
+            </div>
+            <div id="comp">
+                <h3 class="header" style="font-family: sans-serif;">COMPILED HTML</h3>
+                <hr>
+                <textarea class="textarea" id="compBox" cols="40" rows="20"></textarea>
+            </div>
+        </div>
+    </body>
+</html>

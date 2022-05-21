@@ -1,0 +1,182 @@
+HTML:
+
+1: Opem html tag
+
+2: Open head tag
+
+3: This script tag pulls in the main.js file from the same folder that the html file is in
+
+4: This link tag pulls in the style.css file from the same folder that the html file is in. 
+   The href attribute indicates which file we are using.
+
+5: Close head tag
+
+6: Open body tag
+
+7: Open div tag, id=wrapper. A div is a block element that groups together other elements 
+   so you can move them around the page together.
+
+8: Open a div tag with id=notes_entry. The notes entry textarea, and beat pad elements will go in this div
+
+9: Puts an header with the value "ENTER YOUR NOTES". Specify the font type using a style attribute within the h3 tag.
+
+11: Open textarea tag. the text area's class name is "textrea" (used for styling) 
+    and the id is "textBox" used for javascript, the starting cols value is 40 and rows is 20.
+
+12 - 15: Default input for the textarea.
+
+16: Close textarea 
+
+19: Place a button on the page that calls the "play_music()" javascript function from the main.js file, 
+    the label of the button is "PLAY". set class name=btn
+
+22: Put another header with the value "BEAT PAD". Specify the font type using a style attribute within the h3 tag.
+
+24: Puts an input element on the page where the notes can be typed on. 
+    The input element calls the javascript function "soundOn()" when a key is pressed down and 
+    calls "soundOff()" when the key is released. Specify the size and max-length of the input element 
+    using the size and max-length attribute. 
+
+27: Open a span tag. Span is a block element that also groups together other elements, like the div tag. 
+
+28 - 31: Creates 4 buttons, each button calls the "beat_pad()" javascript function from the main.js file,
+         the buttons are labeled A - D. Set class=btn and id=btn(key letter____) for each button created.
+
+32: Close out span tag from line 27. 
+
+34: Open another span tag to place the other 4 buttons
+
+35 - 38: Creates 4 buttons, each button calls the "beat_pad()" javascript function from the main.js file,
+         the buttons are labeled E - H. Set class=btn and id=btn(key letter____) for each button created.
+
+39: close span tqag from line 34.
+
+40: Close out div tag from line 8.
+
+41: Open another div for the compiled html section to go into. Set id=comp. 
+
+42: Place another header (COMPILED HTML) for the compiled html text area. Specify the font type using a style attribute within the h3 tag.
+
+44: Place a textarea where the produced html will go into
+
+45: Close out div tag from line 41.
+
+46: Close out div tag from line 7.
+
+49: Close out body tag.
+
+50: Close out html tag. 
+
+
+
+JAVASCRIPT: 
+
+7 - 16: Creates an array called "NOTES" of 8 dictionaries, where each "key" key of the dictionary represents the key that the user presses on their keyboard, 
+        the "sound" key of the dictionary represents a call to the function "playNote()" where the mp3 name is passed as the parameter. 
+        This array stores the possible keys that may be pressed and the corresponding mp3 to be played. 
+
+18: Declare a global variable named "DELAY", this variable will be incremented whenever the print function inside of the playNote() funciton is called. 1000 will be multiplied onto this value
+    So that 1000*Delay will the delay betwwen each sound. 
+
+20: This function is responsible for playing the audio, stopping the audio, and printing the corresponding html code to text area.
+
+21: Creates an instance object of the Audio() class, with the filename as the paramter and assigns the 
+    new instance it to the variable "audio" variable. 
+
+23: Initializes comp_output to the value "<html>\n<body>\n<button style='" + "width: 300px; height: 300px;'"+ "onclick="+"play();"+">PLAY</button>\n<script>\nfunction play() {\n"
+
+24: This returns a dictionary with keys "start", "stop", "print". 
+
+25 - 27: The "start" key represents a function that calls the ".play()" function of the audio instance object. 
+         This is what plays the mp3 on the browser. 
+
+28 - 31: The "stop" key represents a function that calls the ".pause()" function of the audio instance object. 
+         This is what stops the mp3 on the browser. Set the currentTime value of the audio object to 0 
+         to set it back to the start of the mp3.
+
+32 - 39: The "print" key represents a function that prints out the corresponding html code given the sound that was played. This function also adds a delay between each sound
+         by using the DELAY global variable so that when the compiled html is ran, there is no sound overlap. 
+         This funciton also resets the audio.currentTime back to 0 so that when the sound is played again, it is played from the beginning. 
+
+44 - 51: This function is what turns on the sound when the user presses a key. This funciton is only called when a key is pressed down. 
+         Uses the forEach() method on the NOTES array to execute a function on each array that compares the event.code (the key that was pressed)
+         and the and the "key" key in the dictionary inside of the NOTES array. If they even.code is the same as the key, play that sound.
+
+53 - 60: This function is what stops the sound when the user releases the key that played the sound. 
+         Uses the forEach() method on the NOTES array to execute a function on each array that compares the event.code (the key that was pressed)
+         and the and the "key" key in the dictionary inside of the NOTES array. If they even.code is the same as the key, stop that sound. 
+         This function also calls the print() function inside the playNotes() function. The html is only printed once the key is lifted.
+
+63: This function allows the user to click on a set of buttons to instantaneously play a sound. The html will be printed out 
+    on the comp_output textarea. 
+
+65: Initializes comp_output to the value "<html>\n<body>\n<script>"
+
+67 - 74: Create 8 variables for the 8 buttons that was created in musicbox.html. Assign the buttons to the variables 
+         by using getElementById(button name). These will be used to create event listeners for each button. 
+
+77 - 116: Creates an event listener for the 8 buttons that were created by using .addEventListener(), 
+          "click" is type of event that will trigger this event listener and the function is what will happen when the button is clicked
+          the function prints out the html code on the compBox textarea. The function also creates a new instance object 
+          of the Audio class and uses ".play()" to play the mp3. 
+
+120: The play_music() function plays the mp3 when the user enters their notes in the textBox textarea and when the "play" button is clicked
+
+121: Get the value entered on the textBox textarea and assign it to the "music" variable 
+
+122: Print out the value in the music variable into the console 
+
+123: Split the value of music where there is a return or a new line and assign the split value into "lines" which is a 2d array. 
+
+124: Initializes comp_output to the value "<html>\n<body>\n<script>"
+
+127: Initialize the line_timeout variable to 0. This variable will indicate how much timeout we need for each line
+
+128: Create a for loop where i will be incremented for each of the lines created by the user in the textarea
+
+129: line_timeout of a certain line number is increased by the line number * 1000ms
+
+130 - 156: The if statements check which letter is entered at a given line (A, B, C, or D) and prints out the corresponding html code  
+           for the given letter. The "setTimeout()" function acts as a delay between each note being played. The setTimeout() takes a function 
+           and a number of seconds (usually an int value) as a parameter, the function will be executed after the number of seconds entered
+           has passed. 
+           the function that will be executed after the timeout will play the mp3 (by creating a new Audio object) corresponding to the letter entered.
+
+149: Return. 
+
+
+CSS:
+
+1 - 4: Set the background color of the body using "background-color:" to the specified color code. Set the text color to white using "color:"
+
+5 - 11: Applies the specified styling to all elements that have the ".btn" class.
+        Set the border color, background-color, height, width, and set the cursos to be a pointer when it is on top of the button. 
+
+12 - 14: Applies the specified styling to all elements that have the ".btn" class, styling is applied when the cursos is hovering over 
+         the button. Sets the background-color. 
+
+15 - 28: Applies the specified styling to all elements that have the ".textarea" class. This sets the background-color, text color, 
+         padding inside of the textarea, border-radius (this styling is what makes the textarea rounded off and not squared off), 
+         the border color, specify no outline, the type of font inside the textarea (size, how thick the text looks), 
+         line-height (space between each line), the height of the text area, and how fast the styling transition occurs 
+         when the user clicks on the text area. 
+
+29 - 31: Applies the specified styling to all elements that have the ".textarea" class and when the user has clicked on the text area. 
+         This sets the border color to a different color when the user clicks on a textarea. 
+
+33 - 37: This styling is for the div with the "wrapper" id. This contains both the div for the notes_entry section and the comp section. 
+         This sets the div to the center and puts some space on the top and bottom. 
+
+38 - 41: This styling is for the notes_entry section, this styling moves the entire section to the left of the wrapper div and
+         puts some space to the left of it as well. 
+
+42 - 45: This styling is for the comp section, this styling moves the entire section to the right of the wrapper div and
+         puts some space to the right of it as well.
+
+46 - 49: This styling sets the default height of the compBox text area. 
+
+
+
+
+
+
